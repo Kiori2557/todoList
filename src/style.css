@@ -1,0 +1,39 @@
+:root {
+  font-size: 16px;
+  --header-height: 100px;
+  --nav-width: 12rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: aqua;
+  height: var(--header-height);
+}
+
+nav {
+  height: calc(100vh - var(--header-height));
+  width: 12rem;
+  background-color: bisque;
+  position: fixed;
+}
+nav > ul > li {
+  display: flex;
+  height: 35px;
+  justify-content: center;
+}
+li:last-child {
+  margin-top: auto;
+  color: red;
+}
+
+main {
+  background-color: chartreuse;
+  margin-left: 12rem;
+  width: calc(100vw - var(--nav-width));
+  height: calc(100vh - var(--header-height));
+}
