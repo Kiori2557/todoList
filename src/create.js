@@ -1,12 +1,20 @@
-import { taskArray } from ".";
-const taskTitle = document.querySelector("#title");
-const taskDescription = document.querySelector("#description");
-const taskDueDate = document.querySelector("#dueDate");
-const taskPriority = document.querySelector("#priority");
+import { taskArr } from ".";
+import { projectArr } from ".";
+import { generateTaskDialog } from "./renderDialog";
+import { generateProjectDialog } from "./renderDialog";
 const dialog = document.querySelector("dialog");
 const newTaskForm = document.querySelector(".addNewTask");
 
 class Task {
+  constructor(title, description, dueDate, priority, category) {
+    this.title = title;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.category = category;
+  }
+}
+class Project {
   constructor(title, description, dueDate, priority) {
     this.title = title;
     this.description = description;
@@ -14,16 +22,38 @@ class Task {
     this.priority = priority;
   }
 }
-export function showNewTaskForm() {
+
+export function showDialog(type) {
   newTaskForm.reset();
+  if (type === "task") {
+    generateTaskDialog();
+  } else if (type === "project") {
+    generateProjectDialog();
+  }
   dialog.show();
 }
-export function createNewTask() {
-  let title = taskTitle.value;
-  let description = taskDescription.value;
-  let dueDate = taskDueDate.value;
-  let priority = taskPriority.value;
-  let task = new Task(title, description, dueDate, priority);
-  taskArray.push(task);
-  console.log(taskArray);
+export function create() {
+  const titleVal = document.querySelector("#title").value;
+  const descriptionVal = document.querySelector("#description").value;
+  const dueDateVal = document.querySelector("#dueDate").value;
+  const priorityVal = document.querySelector("#priority").value;
+  const typeVal = document.querySelector("#type").value;
+  let title = titleVal;
+  let description = descriptionVal;
+  let dueDate = dueDateVal;
+  let priority = priorityVal;
+
+  if (typeVal === "task") {
+    const option = document.querySelector(".category");
+    let category = option.value;
+    let task = new Task(title, description, dueDate, priority, category);
+    taskArr.push(task);
+    const jsonTask = JSON.stringify(taskArr);
+    console.log(taskArr);
+  } else if (typeVal === "project") {
+    let project = new Project(title, description, dueDate, priority);
+    projectArr.push(project);
+    const jsonProject = JSON.stringify(projectArr);
+    console.log(projectArr);
+  }
 }
