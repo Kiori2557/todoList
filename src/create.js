@@ -2,6 +2,9 @@ import { taskArr } from ".";
 import { projectArr } from ".";
 import { generateTaskDialog } from "./renderDialog";
 import { generateProjectDialog } from "./renderDialog";
+import { removeTaskNode } from "./renderDialog";
+import { projectListContainer } from "./populateDom";
+import { populateProjectList } from "./populateDom";
 const dialog = document.querySelector("dialog");
 const newTaskForm = document.querySelector(".addNewTask");
 
@@ -38,6 +41,7 @@ export function create() {
   const dueDateVal = document.querySelector("#dueDate").value;
   const priorityVal = document.querySelector("#priority").value;
   const typeVal = document.querySelector("#type").value;
+
   let title = titleVal;
   let description = descriptionVal;
   let dueDate = dueDateVal;
@@ -48,12 +52,11 @@ export function create() {
     let category = option.value;
     let task = new Task(title, description, dueDate, priority, category);
     taskArr.push(task);
-    const jsonTask = JSON.stringify(taskArr);
-    console.log(taskArr);
+    removeTaskNode();
   } else if (typeVal === "project") {
     let project = new Project(title, description, dueDate, priority);
     projectArr.push(project);
-    const jsonProject = JSON.stringify(projectArr);
-    console.log(projectArr);
+    projectListContainer.innerHTML = "";
+    populateProjectList();
   }
 }

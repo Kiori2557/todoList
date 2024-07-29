@@ -1,5 +1,6 @@
 :root {
   font-size: 16px;
+  line-height: 1.25;
   --header-height: 100px;
   --nav-width: 12rem;
 }
@@ -23,18 +24,33 @@ nav {
   background-color: bisque;
   position: fixed;
 }
-nav > ul > li {
+.navBar {
   display: flex;
-  height: 35px;
-  justify-content: center;
+  height: calc(100vh - var(--header-height));
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+ul > li {
+  width: var(--nav-width);
+  max-height: 10rem;
+}
+ul > li > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.6rem;
+}
+ul > li > a:hover {
+  background-color: green;
+}
+.navBar > li:last-child {
+  color: red;
+  margin-top: auto;
 }
 .icon {
   width: 2rem;
   height: 2rem;
-}
-li:last-child {
-  margin-top: auto;
-  color: red;
 }
 
 main {
@@ -42,4 +58,13 @@ main {
   margin-left: 12rem;
   width: calc(100vw - var(--nav-width));
   height: calc(100vh - var(--header-height));
+}
+
+.taskCard {
+  border: 1px solid red;
+}
+
+/* project*/
+.projectList > * {
+  margin-left: 2rem;
 }
