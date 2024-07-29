@@ -5,8 +5,6 @@ import { generateProjectDialog } from "./renderDialog";
 import { removeTaskNode } from "./renderDialog";
 import { projectListContainer } from "./populateDom";
 import { populateProjectList } from "./populateDom";
-const dialog = document.querySelector("dialog");
-const newTaskForm = document.querySelector(".addNewTask");
 
 class Task {
   constructor(title, description, dueDate, priority, category) {
@@ -26,15 +24,6 @@ class Project {
   }
 }
 
-export function showDialog(type) {
-  newTaskForm.reset();
-  if (type === "task") {
-    generateTaskDialog();
-  } else if (type === "project") {
-    generateProjectDialog();
-  }
-  dialog.show();
-}
 export function create() {
   const titleVal = document.querySelector("#title").value;
   const descriptionVal = document.querySelector("#description").value;
@@ -42,21 +31,23 @@ export function create() {
   const priorityVal = document.querySelector("#priority").value;
   const typeVal = document.querySelector("#type").value;
 
-  let title = titleVal;
-  let description = descriptionVal;
-  let dueDate = dueDateVal;
-  let priority = priorityVal;
-
   if (typeVal === "task") {
-    const option = document.querySelector(".category");
-    let category = option.value;
-    let task = new Task(title, description, dueDate, priority, category);
-    taskArr.push(task);
+    createTaskObj(titleVal, descriptionVal, dueDateVal, priorityVal);
     removeTaskNode();
   } else if (typeVal === "project") {
-    let project = new Project(title, description, dueDate, priority);
-    projectArr.push(project);
-    projectListContainer.innerHTML = "";
+    createProjectObj(titleVal, descriptionVal, dueDateVal, priorityVal);
     populateProjectList();
   }
+}
+
+function createTaskObj(title, description, dueDate, priority) {
+  const option = document.querySelector(".category");
+  let category = option.value;
+  let task = new Task(title, description, dueDate, priority, category);
+  taskArr.push(task);
+}
+function createProjectObj(title, description, dueDate, priority) {
+  let project = new Project(title, description, dueDate, priority);
+  projectArr.push(project);
+  projectListContainer.innerHTML = "";
 }

@@ -1,4 +1,7 @@
+import { populateProjectOption } from "./populateDom";
 const createBtn = document.querySelector(".create");
+const dialog = document.querySelector("dialog");
+const newTaskForm = document.querySelector(".addNewTask");
 
 const type = document.querySelector("#type");
 export function generateTaskDialog() {
@@ -9,14 +12,19 @@ export function generateTaskDialog() {
   projectSelector.classList.add("category");
   projectSelector.setAttribute("type", "option");
 
-  const option = document.createElement("option");
+  const defaultOption = document.createElement("option");
 
   projectSelectorLabel.textContent = "Choose your project";
   projectSelectorLabel.classList.add("categoryLabel");
 
-  option.textContent = "default";
-  option.setAttribute("value", "default");
-  projectSelector.appendChild(option);
+  defaultOption.textContent = "default";
+  defaultOption.setAttribute("value", "default");
+  defaultOption.setAttribute("disable", "");
+  defaultOption.setAttribute("hidden", "");
+  projectSelector.appendChild(defaultOption);
+
+  populateProjectOption(projectSelector);
+
   const parentNode = createBtn.parentNode;
   parentNode.insertBefore(projectSelectorLabel, createBtn);
   parentNode.insertBefore(projectSelector, createBtn);
@@ -31,4 +39,14 @@ export function removeTaskNode() {
   const categoryLabel = document.querySelector(".categoryLabel");
   parentNode.removeChild(category);
   parentNode.removeChild(categoryLabel);
+}
+
+export function showDialog(type) {
+  newTaskForm.reset();
+  if (type === "task") {
+    generateTaskDialog();
+  } else if (type === "project") {
+    generateProjectDialog();
+  }
+  dialog.show();
 }

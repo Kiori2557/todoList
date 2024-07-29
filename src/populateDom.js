@@ -7,3 +7,13 @@ export function populateProjectList() {
     projectListContainer.appendChild(projectLi);
   });
 }
+
+export function populateProjectOption(parentNode) {
+  if (projectArr.length === 0) return;
+  projectArr.forEach((project) => {
+    const option = document.createElement("option");
+    option.setAttribute("value", project.title);
+    option.textContent = project.title;
+    parentNode.appendChild(option);
+  });
+}

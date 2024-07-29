@@ -1,6 +1,6 @@
 import "./style.css";
 import { generateDialog } from "./renderDialog";
-import { showDialog } from "./create";
+import { showDialog } from "./renderDialog";
 import { create } from "./create";
 import { renderTaskCard } from "./renderAllTab";
 
