@@ -10,23 +10,28 @@ export function renderTaskCard() {
   taskArr.forEach((task) => {
     const card = document.createElement("div");
     const title = document.createElement("div");
-    const description = document.createElement("div");
+    const note = document.createElement("div");
     const dueDate = document.createElement("div");
     const priority = document.createElement("div");
     const category = document.createElement("div");
+    const status = document.createElement("div");
 
     title.textContent = task.title;
-    description.textContent = task.description;
+    note.textContent = task.note;
     dueDate.textContent = task.dueDate;
     priority.textContent = task.priority;
     category.textContent = task.category;
+    task.status
+      ? (status.textContent = "done")
+      : (status.textContent = "on process");
 
     card.classList.add("taskCard");
     card.appendChild(title);
-    card.appendChild(description);
+    card.appendChild(note);
     card.appendChild(dueDate);
     card.appendChild(priority);
     card.appendChild(category);
+    card.appendChild(status);
     content.appendChild(card);
   });
 }
