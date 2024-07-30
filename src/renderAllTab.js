@@ -13,43 +13,48 @@ export function renderTaskCard(arr) {
     content.appendChild(noTask);
     return;
   }
-  arr.forEach((task) => {
-    const card = document.createElement("div");
-    const title = document.createElement("div");
-    const note = document.createElement("div");
-    const dueDate = document.createElement("div");
-    const priority = document.createElement("div");
-    const category = document.createElement("div");
-    const status = document.createElement("div");
-    const complete = document.createElement("input");
-    title.textContent = task.title;
-    note.textContent = task.note;
-    if (isValid(task.dueDate)) {
-      dueDate.textContent = task.dueDate;
-    }
-    complete.addEventListener("click", () =>
-      changeTaskStatus(complete, status)
-    );
-    priority.textContent = task.priority;
-    category.textContent = task.category;
-    task.status
-      ? (status.textContent = "done")
-      : (status.textContent = "on process");
+  arr.forEach((task) => createTaskCard(task, arr));
+}
 
-    card.setAttribute("data-index", arr.indexOf(task));
-    complete.setAttribute("type", "checkbox");
-    complete.classList.add("complete");
-    card.classList.add("taskCard");
-    card.appendChild(title);
-    card.appendChild(note);
-    card.appendChild(dueDate);
-    card.appendChild(priority);
-    card.appendChild(category);
-    card.appendChild(status);
-    card.appendChild(complete);
-    content.appendChild(card);
+function createTaskCard(task, arr) {
+  const card = document.createElement("div");
+  const title = document.createElement("div");
+  const note = document.createElement("div");
+  const dueDate = document.createElement("div");
+  const priority = document.createElement("div");
+  const category = document.createElement("div");
+  const status = document.createElement("div");
+  const changeStatus = document.createElement("input");
+  const deleteBtn = document.createElement("button");
+  title.textContent = task.title;
+  note.textContent = task.note;
+  if (isValid(task.dueDate)) {
+    dueDate.textContent = task.dueDate;
+  }
+  changeStatus.addEventListener("click", () => changeTaskStatus(changeStatus));
+  deleteBtn.addEventListener("click", () => {
+    deleteTask(deleteBtn);
   });
-  console.log(taskArr);
+  priority.textContent = task.priority;
+  category.textContent = task.category;
+  task.status
+    ? (status.textContent = "done")
+    : (status.textContent = "on process");
+  deleteBtn.textContent = "delete";
+
+  card.setAttribute("data-index", arr.indexOf(task));
+  changeStatus.setAttribute("type", "checkbox");
+  changeStatus.classList.add("changeStatus");
+  card.classList.add("taskCard");
+  card.appendChild(title);
+  card.appendChild(note);
+  card.appendChild(dueDate);
+  card.appendChild(priority);
+  card.appendChild(category);
+  card.appendChild(status);
+  card.appendChild(changeStatus);
+  card.appendChild(deleteBtn);
+  content.appendChild(card);
 }
 
 export function sortBy() {
@@ -64,14 +69,18 @@ export function sortBy() {
   }
 }
 
-export function changeTaskStatus(complete, status) {
-  let parentNode = complete.parentNode;
+function changeTaskStatus(changeStatus) {
+  let parentNode = changeStatus.parentNode;
   let index = parentNode.getAttribute("data-index");
   console.log(parentNode);
   taskArr[index].status = !taskArr[index].status;
-  if (complete.checked) {
-    status.textContent = "done";
-  } else if (!complete.checked) {
-    status.textContent = "on process";
-  }
+  renderTaskCard(taskArr);
+}
+
+function deleteTask(deleteBtn) {
+  let parentNode = deleteBtn.parentNode;
+  let index = parentNode.getAttribute("data-index");
+  taskArr.splice(index, 1);
+  console.log(taskArr);
+  renderTaskCard(taskArr);
 }
