@@ -5,13 +5,15 @@ import { create } from "./create";
 import { renderTaskCard } from "./renderAllTab";
 import { sortBy as sortByFunc } from "./renderAllTab";
 import { showPriorityVal } from "./renderDialog";
+import { renderProject } from "./renderProjectsTab";
 
-const sortByBtn = document.querySelector("#sortBy");
+export const sortByBtn = document.querySelector("#sortBy");
 const newTask = document.querySelector(".newTask");
 const newProject = document.querySelector(".projectHead>.icon");
+const projectTab = document.querySelector(".projectHead>.label");
 const createBtn = document.querySelector(".create");
 const allTask = document.querySelector(".allTask");
-const priority = document.querySelector("#priority");
+export let currentTab = "all";
 export const taskArr = [];
 export const projectArr = [];
 
@@ -25,3 +27,5 @@ allTask.addEventListener("click", () => renderTaskCard(taskArr));
 
 sortByBtn.addEventListener("change", sortByFunc);
 priority.addEventListener("mousemove", showPriorityVal);
+
+projectTab.addEventListener("click", renderProject);

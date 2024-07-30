@@ -4,6 +4,8 @@ import { removeNode } from "./renderDialog";
 import { projectListContainer } from "./populateDom";
 import { populateProjectList } from "./populateDom";
 import { renderTaskCard } from "./renderAllTab";
+import { renderProject } from "./renderProjectsTab";
+import { currentTab } from ".";
 
 class Task {
   constructor(title, note, dueDate, priority, category, status) {
@@ -47,7 +49,11 @@ export function create() {
       statusVal
     );
     removeNode(category);
-    renderTaskCard(taskArr);
+    if (currentTab === "all") {
+      renderTaskCard(taskArr);
+    } else if (currentTab === "project") {
+      renderProject();
+    }
   } else if (typeVal === "project") {
     const description = document.querySelector("#description");
     const descriptionVal = description.value;
@@ -61,6 +67,9 @@ export function create() {
     );
     removeNode(description);
     populateProjectList();
+    if (currentTab === "project") {
+      renderProject();
+    }
   }
 }
 
