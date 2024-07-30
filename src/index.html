@@ -9,6 +9,12 @@
     <header>
       <h1>PROGRESS</h1>
       <p>tool to multiply your productivity</p>
+      <label for="sortBy">sort by</label>
+      <select name="" id="sortBy">
+        <option value="" hidden default>choose ur option</option>
+        <option value="dueDate" class="sortDueDate">due date</option>
+        <option value="priority">priority</option>
+      </select>
     </header>
     <nav>
       <ul class="navBar">
@@ -85,9 +91,9 @@
         <label for="note">note:</label>
         <input id="note" type="text" />
         <label for="dueDate">dueDate:</label>
-        <input id="dueDate" type="text" />
+        <input id="dueDate" type="date" />
         <label for="priority">priority:</label>
-        <input id="priority" type="text" />
+        <input id="priority" type="range" min="1" max="3" />
         <input type="checkbox" name="" id="status" />
         <label for="status">done</label>
         <button type="submit" formmethod="dialog" class="create">new</button>

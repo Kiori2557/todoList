@@ -29,7 +29,7 @@ class Project {
 export function create() {
   const titleVal = document.querySelector("#title").value;
   const noteVal = document.querySelector("#note").value;
-  const dueDateVal = document.querySelector("#dueDate").value;
+  let dueDateVal = document.querySelector("#dueDate").value;
   const priorityVal = document.querySelector("#priority").value;
   const typeVal = document.querySelector("#type").value;
   const statusVal = document.querySelector("#status").checked;
@@ -37,6 +37,7 @@ export function create() {
   if (typeVal === "task") {
     const category = document.querySelector("#category");
     const categoryVal = category.value;
+    dueDateVal = new Date(dueDateVal);
     createTaskObj(
       titleVal,
       noteVal,
@@ -46,7 +47,7 @@ export function create() {
       statusVal
     );
     removeNode(category);
-    renderTaskCard();
+    renderTaskCard(taskArr);
   } else if (typeVal === "project") {
     const description = document.querySelector("#description");
     const descriptionVal = description.value;

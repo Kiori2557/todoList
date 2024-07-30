@@ -1,13 +1,16 @@
 import { taskArr } from ".";
+import { compareAsc } from "date-fns";
 const content = document.querySelector(".content");
-export function renderTaskCard() {
+
+export function renderTaskCard(arr) {
   content.innerHTML = "";
-  if (taskArr.length === 0) {
+  if (arr.length === 0) {
     const noTask = document.createElement("p");
     content.textContent = "there is no task to do yet";
     content.appendChild(noTask);
+    return;
   }
-  taskArr.forEach((task) => {
+  arr.forEach((task) => {
     const card = document.createElement("div");
     const title = document.createElement("div");
     const note = document.createElement("div");
@@ -34,4 +37,12 @@ export function renderTaskCard() {
     card.appendChild(status);
     content.appendChild(card);
   });
+  console.log(taskArr);
+}
+
+export function sortBy() {
+  let ascTaskArr = taskArr.toSorted(
+    (a, b) => a.dueDate.getTime() - b.dueDate.getTime()
+  );
+  renderTaskCard(ascTaskArr);
 }

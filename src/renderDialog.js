@@ -57,3 +57,15 @@ export function showDialog(type) {
   }
   dialog.show();
 }
+
+export function showPriorityVal() {
+  const priority = document.querySelector("#priority");
+  const priorityLabel = document.querySelector("label[for='priority']");
+  if (priority.value === "1") {
+    priorityLabel.textContent = "priority: low";
+  } else if (priority.value === "2") {
+    priorityLabel.textContent = "priority: mid";
+  } else if (priority.value === "3") {
+    priorityLabel.textContent = "priority: high";
+  }
+}
