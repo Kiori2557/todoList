@@ -39,7 +39,6 @@ export function create() {
   if (typeVal === "task") {
     const category = document.querySelector("#category");
     const categoryVal = category.value;
-    dueDateVal = new Date(dueDateVal);
     createTaskObj(
       titleVal,
       noteVal,
@@ -48,6 +47,7 @@ export function create() {
       categoryVal,
       statusVal
     );
+
     removeNode(category);
     if (currentTab === "all") {
       renderTaskCard(taskArr);
@@ -71,6 +71,25 @@ export function create() {
       renderProject();
     }
   }
+}
+export function updateTaskArr(index) {
+  const createBtn = document.querySelector(".create");
+  const updateBtn = document.querySelector(".update");
+  const title = document.querySelector("#title").value;
+  const note = document.querySelector("#note").value;
+  let dueDate = document.querySelector("#dueDate").value;
+  const priority = document.querySelector("#priority").value;
+  const type = document.querySelector("#type").value;
+  const status = document.querySelector("#status").checked;
+  const category = document.querySelector("#category");
+  const categoryVal = category.value;
+  let task = new Task(title, note, dueDate, priority, categoryVal, status);
+
+  taskArr[index] = task;
+  removeNode(category);
+  renderTaskCard(taskArr);
+  createBtn.removeAttribute("hidden");
+  console.log("hi");
 }
 
 function createTaskObj(title, note, dueDate, priority, category, status) {

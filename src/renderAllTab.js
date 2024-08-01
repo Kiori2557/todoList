@@ -2,6 +2,7 @@ import { taskArr } from ".";
 import { sortByBtn } from ".";
 import { isValid } from "date-fns";
 import { currentTab } from ".";
+import { generateEditDialog } from "./renderDialog";
 const content = document.querySelector(".content");
 
 export function renderTaskCard(arr) {
@@ -26,21 +27,24 @@ function createTaskCard(task, arr) {
   const status = document.createElement("div");
   const changeStatus = document.createElement("input");
   const deleteBtn = document.createElement("button");
+  const editBtn = document.createElement("button");
   title.textContent = task.title;
   note.textContent = task.note;
-  if (isValid(task.dueDate)) {
-    dueDate.textContent = task.dueDate;
-  }
+  dueDate.textContent = task.dueDate;
   changeStatus.addEventListener("click", () => changeTaskStatus(changeStatus));
   deleteBtn.addEventListener("click", () => {
     deleteTask(deleteBtn);
   });
+  editBtn.addEventListener("click", () =>
+    generateEditDialog(arr.indexOf(task))
+  );
   priority.textContent = task.priority;
   category.textContent = task.category;
   task.status
     ? (status.textContent = "done")
     : (status.textContent = "on process");
   deleteBtn.textContent = "delete";
+  editBtn.textContent = "edit";
 
   card.setAttribute("data-index", arr.indexOf(task));
   changeStatus.setAttribute("type", "checkbox");
@@ -54,6 +58,7 @@ function createTaskCard(task, arr) {
   card.appendChild(status);
   card.appendChild(changeStatus);
   card.appendChild(deleteBtn);
+  card.appendChild(editBtn);
   content.appendChild(card);
 }
 

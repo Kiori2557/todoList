@@ -14,7 +14,17 @@ const projectTab = document.querySelector(".projectHead>.label");
 const createBtn = document.querySelector(".create");
 const allTask = document.querySelector(".allTask");
 export let currentTab = "all";
-export const taskArr = [];
+export const taskArr = [
+  {
+    title: "hi",
+    note: "hello",
+    dueDate: "",
+    priority: 3,
+    category: "",
+    status: "",
+  },
+];
+
 export const projectArr = [];
 
 window.addEventListener("load", () => renderTaskCard(taskArr));
