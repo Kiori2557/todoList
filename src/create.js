@@ -76,7 +76,7 @@ export function create() {
 function createTaskObj(title, note, dueDate, priority, category, status) {
   let task = new Task(title, note, dueDate, priority, category, status);
   taskArr.push(task);
-  console.log(task);
+  store();
 }
 function createProjectObj(title, note, dueDate, priority, description, status) {
   let project = new Project(
@@ -89,4 +89,8 @@ function createProjectObj(title, note, dueDate, priority, description, status) {
   );
   projectArr.push(project);
   projectListContainer.innerHTML = "";
+}
+
+export function store() {
+  localStorage.setItem("taskArray", JSON.stringify(taskArr));
 }

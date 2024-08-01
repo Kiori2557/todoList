@@ -1,6 +1,7 @@
 import { populateProjectOption } from "./populateDom";
 import { taskArr } from ".";
 import { renderTaskCard } from "./allTab";
+import { store } from "./create";
 const createBtn = document.querySelector(".create");
 const dialog = document.querySelector("dialog");
 const newTaskForm = document.querySelector(".newForm");
@@ -58,7 +59,6 @@ export function generateEditDialog(index) {
   editCard(index);
   const editBtn = document.querySelector(`.edit${index}`);
   editBtn.addEventListener("click", () => editTaskInfo(index));
-  console.log(taskArr);
 }
 
 function addCategory(parentNode, btn) {
@@ -131,6 +131,6 @@ function editTaskInfo(index) {
   task.dueDate = dueDateVal;
   task.priority = priorityVal;
   task.category = categoryVal;
-  console.log(taskArr);
+  store();
   renderTaskCard(taskArr);
 }
