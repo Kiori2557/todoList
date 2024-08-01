@@ -35,7 +35,12 @@ export function create() {
   const priorityVal = document.querySelector("#priority").value;
   const typeVal = document.querySelector("#type").value;
   const statusVal = document.querySelector("#status").checked;
-  dueDateVal = new Date(dueDateVal);
+  console.log(typeof dueDateVal);
+  if (dueDateVal == null || dueDateVal == "") {
+    dueDateVal = new Date();
+  } else {
+    dueDateVal = new Date(dueDateVal);
+  }
   if (typeVal === "task") {
     const category = document.querySelector("#category");
     const categoryVal = category.value;
@@ -68,7 +73,7 @@ export function create() {
     removeNode(description);
     populateProjectList();
     if (currentTab === "project") {
-      renderProject();
+      renderProject(projectArr);
     }
   }
 }

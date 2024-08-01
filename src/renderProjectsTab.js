@@ -1,14 +1,14 @@
 import { taskArr } from ".";
-import { projectArr } from ".";
 import { currentTab } from ".";
 const content = document.querySelector(".content");
-export function renderProject() {
+export function renderProject(arr) {
   currentTab = "project";
   content.innerHTML = "";
-  if (projectArr.length === 0) {
+  if (arr === undefined || arr.length === 0) {
     content.textContent = "no project yet";
+    return;
   }
-  projectArr.forEach((project) => {
+  arr.forEach((project) => {
     const title = document.createElement("h5");
     title.textContent = project.title;
 

@@ -9,9 +9,10 @@ import { renderProject } from "./renderProjectsTab";
 export const sortByBtn = document.querySelector("#sortBy");
 const newTask = document.querySelector(".newTask");
 const newProject = document.querySelector(".projectHead>.icon");
-const projectTab = document.querySelector(".projectHead>.label");
+const projectTab = document.querySelector(".newProject");
 const createBtn = document.querySelector(".create");
 const allTask = document.querySelector(".allTask");
+
 export let currentTab = "all";
 export let taskArr = JSON.parse(localStorage.getItem("taskArray"));
 
@@ -25,7 +26,11 @@ createBtn.addEventListener("click", create);
 
 allTask.addEventListener("click", () => renderTaskCard(taskArr));
 
-sortByBtn.addEventListener("change", sortByFunc);
+sortByBtn.addEventListener("change", () => {
+  sortByFunc();
+});
 priority.addEventListener("mousemove", showPriorityVal);
 
-projectTab.addEventListener("click", renderProject);
+projectTab.addEventListener("click", () => {
+  renderProject(projectArr);
+});
