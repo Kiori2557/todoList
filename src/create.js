@@ -76,7 +76,7 @@ export function create() {
 function createTaskObj(title, note, dueDate, priority, category, status) {
   let task = new Task(title, note, dueDate, priority, category, status);
   taskArr.push(task);
-  store();
+  store(taskArr);
 }
 function createProjectObj(title, note, dueDate, priority, description, status) {
   let project = new Project(
@@ -87,10 +87,18 @@ function createProjectObj(title, note, dueDate, priority, description, status) {
     priority,
     status
   );
+  if (!projectArr) {
+    projectArr = [];
+  }
   projectArr.push(project);
+  store(projectArr);
   projectListContainer.innerHTML = "";
 }
 
-export function store() {
-  localStorage.setItem("taskArray", JSON.stringify(taskArr));
+export function store(arr) {
+  if (arr === taskArr) {
+    localStorage.setItem(`taskArray`, JSON.stringify(arr));
+  } else if (arr === projectArr) {
+    localStorage.setItem(`projectArray`, JSON.stringify(arr));
+  }
 }

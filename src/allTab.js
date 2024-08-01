@@ -3,10 +3,12 @@ import { currentTab } from ".";
 import { generateEditDialog } from "./renderDialog";
 import { isValid } from "date-fns";
 import { store } from "./create";
+import { populateProjectList } from "./populateDom";
 const content = document.querySelector(".content");
 
 export function renderTaskCard(arr) {
-  let storageData = JSON.parse(localStorage.getItem("taskArray"));
+  populateProjectList();
+  let storageData = JSON.parse(localStorage.getItem(`taskArray`));
   if (storageData !== null) {
     taskArr = storageData;
   }
@@ -38,6 +40,7 @@ function createTaskCard(task, arr) {
   if (isValid(task.dueDate)) {
     dueDate.textContent = task.dueDate;
   }
+  changeStatus.checked = task.status;
   changeStatus.addEventListener("click", () => changeTaskStatus(changeStatus));
   deleteBtn.addEventListener("click", () => {
     deleteTask(deleteBtn);
@@ -74,13 +77,14 @@ function changeTaskStatus(changeStatus) {
   let index = parentNode.getAttribute("data-index");
   console.log(parentNode);
   taskArr[index].status = !taskArr[index].status;
-  renderTaskCard();
+  store(taskArr);
+  renderTaskCard(taskArr);
 }
 
 function deleteTask(deleteBtn) {
   let parentNode = deleteBtn.parentNode;
   let index = parentNode.getAttribute("data-index");
   taskArr.splice(index, 1);
-  store();
-  renderTaskCard();
+  store(taskArr);
+  renderTaskCard(taskArr);
 }

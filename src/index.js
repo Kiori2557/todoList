@@ -13,19 +13,9 @@ const projectTab = document.querySelector(".projectHead>.label");
 const createBtn = document.querySelector(".create");
 const allTask = document.querySelector(".allTask");
 export let currentTab = "all";
-export let taskArr = [
-  // {
-  //   title: "hi",
-  //   note: "hello",
-  //   dueDate: new Date("Mon Jul 29 2024 06:30:00 GMT+0630 (Myanmar Time)"),
-  //   priority: 3,
-  //   category: "",
-  //   status: "",
-  // },
-];
-// new Array(JSON.parse(localStorage.getItem("taskArray")))
+export let taskArr = JSON.parse(localStorage.getItem("taskArray"));
 
-export const projectArr = [];
+export let projectArr = JSON.parse(localStorage.getItem("projectArray"));
 
 window.addEventListener("load", () => renderTaskCard(taskArr));
 

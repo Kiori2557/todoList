@@ -131,6 +131,6 @@ function editTaskInfo(index) {
   task.dueDate = dueDateVal;
   task.priority = priorityVal;
   task.category = categoryVal;
-  store();
+  store(taskArr);
   renderTaskCard(taskArr);
 }
