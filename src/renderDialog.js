@@ -83,7 +83,7 @@ function addCategory(parentNode, btn) {
 }
 
 function editCard(index) {
-  const card = document.querySelector(`div[data-index='${index}`);
+  const card = document.querySelector(`div[data-index='${index}']`);
   card.innerHTML = "";
   const title = document.createElement("input");
   title.classList.add(`title${index}`);

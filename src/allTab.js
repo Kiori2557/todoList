@@ -1,8 +1,6 @@
 import { taskArr } from ".";
 import { currentTab } from ".";
-import { generateEditDialog } from "./renderDialog";
-import { isValid } from "date-fns";
-import { store } from "./create";
+import { createCard } from "./card";
 import { populateProjectList } from "./populateDom";
 const content = document.querySelector(".content");
 
@@ -20,71 +18,14 @@ export function renderTaskCard(arr) {
     content.appendChild(noTask);
     return;
   } else {
-    arr.forEach((task) => createTaskCard(task, arr));
+    arr.forEach((task) => {
+      createCard(task, arr, content);
+      let index = arr.indexOf(task);
+      const category = document.createElement("div");
+      category.textContent = task.category;
+      const card = document.querySelector(`div[data-index='${index}']`);
+      const status = card.querySelector(`.status`);
+      card.insertBefore(category, status);
+    });
   }
-}
-
-function createTaskCard(task, arr) {
-  const card = document.createElement("div");
-  const title = document.createElement("div");
-  const note = document.createElement("div");
-  const dueDate = document.createElement("div");
-  const priority = document.createElement("div");
-  const category = document.createElement("div");
-  const status = document.createElement("div");
-  const changeStatus = document.createElement("input");
-  const deleteBtn = document.createElement("button");
-  const editBtn = document.createElement("button");
-  title.textContent = task.title;
-  note.textContent = task.note;
-  if (isValid(task.dueDate)) {
-    dueDate.textContent = task.dueDate;
-  }
-  changeStatus.checked = task.status;
-  changeStatus.addEventListener("click", () => changeTaskStatus(changeStatus));
-  deleteBtn.addEventListener("click", () => {
-    deleteTask(deleteBtn);
-  });
-  editBtn.addEventListener("click", () =>
-    generateEditDialog(arr.indexOf(task))
-  );
-  priority.textContent = task.priority;
-  category.textContent = task.category;
-  task.status
-    ? (status.textContent = "done")
-    : (status.textContent = "on process");
-  deleteBtn.textContent = "delete";
-  editBtn.textContent = "edit";
-
-  card.setAttribute("data-index", arr.indexOf(task));
-  changeStatus.setAttribute("type", "checkbox");
-  changeStatus.classList.add("changeStatus");
-  card.classList.add("taskCard");
-  card.appendChild(title);
-  card.appendChild(note);
-  card.appendChild(dueDate);
-  card.appendChild(priority);
-  card.appendChild(category);
-  card.appendChild(status);
-  card.appendChild(changeStatus);
-  card.appendChild(deleteBtn);
-  card.appendChild(editBtn);
-  content.appendChild(card);
-}
-
-function changeTaskStatus(changeStatus) {
-  let parentNode = changeStatus.parentNode;
-  let index = parentNode.getAttribute("data-index");
-  console.log(parentNode);
-  taskArr[index].status = !taskArr[index].status;
-  store(taskArr);
-  renderTaskCard(taskArr);
-}
-
-function deleteTask(deleteBtn) {
-  let parentNode = deleteBtn.parentNode;
-  let index = parentNode.getAttribute("data-index");
-  taskArr.splice(index, 1);
-  store(taskArr);
-  renderTaskCard(taskArr);
 }
