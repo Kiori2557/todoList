@@ -101,6 +101,7 @@ function createProjectObj(title, note, dueDate, priority, description, status) {
 
 export function store(arr) {
   if (arr === taskArr) {
+    console.log("store in the localStorage");
     localStorage.setItem(`taskArray`, JSON.stringify(arr));
   } else if (arr === projectArr) {
     localStorage.setItem(`projectArray`, JSON.stringify(arr));

@@ -17,15 +17,5 @@ export function renderProject(arr) {
     const card = document.querySelector(`div[data-index='${index}']`);
     const note = card.querySelector(`.note`);
     card.insertBefore(description, note);
-    // const title = document.createElement("h5");
-    // title.textContent = project.title;
-
-    // let taskArray = taskArr.filter((task) => task.category === project.title);
-    // taskArray.forEach((task) => {
-    //   const taskTitle = document.createElement("p");
-    //   taskTitle.textContent = task.title;
-    //   title.appendChild(taskTitle);
-    // });
-    // content.appendChild(title);
   });
 }

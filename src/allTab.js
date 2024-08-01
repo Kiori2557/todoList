@@ -2,14 +2,11 @@ import { taskArr } from ".";
 import { currentTab } from ".";
 import { createCard } from "./card";
 import { populateProjectList } from "./populateDom";
+
 const content = document.querySelector(".content");
 
 export function renderTaskCard(arr) {
   populateProjectList();
-  let storageData = JSON.parse(localStorage.getItem(`taskArray`));
-  if (storageData !== null) {
-    taskArr = storageData;
-  }
   currentTab = "all";
   content.innerHTML = "";
   if (arr === undefined || arr.length == 0 || arr[0] == null) {
@@ -21,6 +18,9 @@ export function renderTaskCard(arr) {
     arr.forEach((task) => {
       createCard(task, arr, content);
       let index = arr.indexOf(task);
+      console.log(taskArr);
+      console.log(arr);
+      console.log(index);
       const category = document.createElement("div");
       category.textContent = task.category;
       const card = document.querySelector(`div[data-index='${index}']`);

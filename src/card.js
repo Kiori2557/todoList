@@ -2,7 +2,7 @@ import { generateEditDialog } from "./renderDialog";
 import { renderTaskCard } from "./allTab";
 import { isValid } from "date-fns";
 import { store } from "./create";
-import { taskArr } from ".";
+
 export function createCard(item, arr, parent) {
   const card = document.createElement("div");
   const title = document.createElement("div");
@@ -34,7 +34,7 @@ export function createCard(item, arr, parent) {
   status.classList.add("status");
   deleteBtn.textContent = "delete";
   editBtn.textContent = "edit";
-
+  console.log(`from card ${arr.indexOf(item)}`);
   card.setAttribute("data-index", arr.indexOf(item));
   changeStatus.setAttribute("type", "checkbox");
   changeStatus.classList.add("changeStatus");
@@ -62,6 +62,7 @@ function deleteItem(deleteBtn, arr) {
   let parentNode = deleteBtn.parentNode;
   let index = parentNode.getAttribute("data-index");
   arr.splice(index, 1);
+  console.log(arr);
   store(arr);
   renderTaskCard(arr);
 }

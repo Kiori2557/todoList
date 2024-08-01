@@ -34,13 +34,13 @@ export function removeNode(node) {
 }
 
 export function showDialog(type) {
-  newTaskForm.reset();
+  formReset();
   if (type === "task") {
     generateTaskDialog();
   } else if (type === "project") {
     generateProjectDialog();
   }
-  dialog.show();
+  dialog.showModal();
 }
 
 export function showPriorityVal() {
@@ -59,6 +59,18 @@ export function generateEditDialog(index) {
   editCard(index);
   const editBtn = document.querySelector(`.edit${index}`);
   editBtn.addEventListener("click", () => editTaskInfo(index));
+}
+
+function formReset() {
+  const category = document.querySelector("#category");
+  const description = document.querySelector("#description");
+  if (category !== null) {
+    removeNode(category);
+  }
+  if (description !== null) {
+    removeNode(description);
+  }
+  newTaskForm.reset();
 }
 
 function addCategory(parentNode, btn) {
