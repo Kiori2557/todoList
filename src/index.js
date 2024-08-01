@@ -1,9 +1,8 @@
 import "./style.css";
-import { generateDialog } from "./renderDialog";
 import { showDialog } from "./renderDialog";
 import { create } from "./create";
-import { renderTaskCard } from "./renderAllTab";
-import { sortBy as sortByFunc } from "./renderAllTab";
+import { renderTaskCard } from "./allTab";
+import { sortBy as sortByFunc } from "./sort";
 import { showPriorityVal } from "./renderDialog";
 import { renderProject } from "./renderProjectsTab";
 
@@ -18,7 +17,7 @@ export const taskArr = [
   {
     title: "hi",
     note: "hello",
-    dueDate: "",
+    dueDate: new Date("Mon Jul 29 2024 06:30:00 GMT+0630 (Myanmar Time)"),
     priority: 3,
     category: "",
     status: "",

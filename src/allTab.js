@@ -1,6 +1,4 @@
 import { taskArr } from ".";
-import { sortByBtn } from ".";
-import { isValid } from "date-fns";
 import { currentTab } from ".";
 import { generateEditDialog } from "./renderDialog";
 const content = document.querySelector(".content");
@@ -62,18 +60,6 @@ function createTaskCard(task, arr) {
   content.appendChild(card);
 }
 
-export function sortBy() {
-  if (sortByBtn.value == "dueDate") {
-    let ascTaskArr = taskArr.toSorted(
-      (a, b) => a.dueDate.getTime() - b.dueDate.getTime()
-    );
-    renderTaskCard(ascTaskArr);
-  } else if (sortByBtn.value == "priority") {
-    let ascTaskArr = taskArr.toSorted((a, b) => b.priority - a.priority);
-    renderTaskCard(ascTaskArr);
-  }
-}
-
 function changeTaskStatus(changeStatus) {
   let parentNode = changeStatus.parentNode;
   let index = parentNode.getAttribute("data-index");
@@ -86,6 +72,5 @@ function deleteTask(deleteBtn) {
   let parentNode = deleteBtn.parentNode;
   let index = parentNode.getAttribute("data-index");
   taskArr.splice(index, 1);
-  console.log(taskArr);
   renderTaskCard(taskArr);
 }

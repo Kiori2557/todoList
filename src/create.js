@@ -3,7 +3,7 @@ import { projectArr } from ".";
 import { removeNode } from "./renderDialog";
 import { projectListContainer } from "./populateDom";
 import { populateProjectList } from "./populateDom";
-import { renderTaskCard } from "./renderAllTab";
+import { renderTaskCard } from "./allTab";
 import { renderProject } from "./renderProjectsTab";
 import { currentTab } from ".";
 
@@ -35,7 +35,7 @@ export function create() {
   const priorityVal = document.querySelector("#priority").value;
   const typeVal = document.querySelector("#type").value;
   const statusVal = document.querySelector("#status").checked;
-
+  dueDateVal = new Date(dueDateVal);
   if (typeVal === "task") {
     const category = document.querySelector("#category");
     const categoryVal = category.value;
@@ -72,29 +72,11 @@ export function create() {
     }
   }
 }
-export function updateTaskArr(index) {
-  const createBtn = document.querySelector(".create");
-  const updateBtn = document.querySelector(".update");
-  const title = document.querySelector("#title").value;
-  const note = document.querySelector("#note").value;
-  let dueDate = document.querySelector("#dueDate").value;
-  const priority = document.querySelector("#priority").value;
-  const type = document.querySelector("#type").value;
-  const status = document.querySelector("#status").checked;
-  const category = document.querySelector("#category");
-  const categoryVal = category.value;
-  let task = new Task(title, note, dueDate, priority, categoryVal, status);
-
-  taskArr[index] = task;
-  removeNode(category);
-  renderTaskCard(taskArr);
-  createBtn.removeAttribute("hidden");
-  console.log("hi");
-}
 
 function createTaskObj(title, note, dueDate, priority, category, status) {
   let task = new Task(title, note, dueDate, priority, category, status);
   taskArr.push(task);
+  console.log(task);
 }
 function createProjectObj(title, note, dueDate, priority, description, status) {
   let project = new Project(

@@ -1,7 +1,6 @@
 import { populateProjectOption } from "./populateDom";
 import { taskArr } from ".";
-import { create } from "./create";
-import { renderTaskCard } from "./renderAllTab";
+import { renderTaskCard } from "./allTab";
 const createBtn = document.querySelector(".create");
 const dialog = document.querySelector("dialog");
 const newTaskForm = document.querySelector(".newForm");
@@ -9,26 +8,8 @@ const newTaskForm = document.querySelector(".newForm");
 const type = document.querySelector("#type");
 export function generateTaskDialog() {
   type.value = "task";
-  const categoryLabel = document.createElement("label");
-  const category = document.createElement("select");
-
-  category.setAttribute("id", "category");
-  category.setAttribute("type", "option");
-
-  const defaultOption = document.createElement("option");
-
-  categoryLabel.textContent = "Choose your project";
-  categoryLabel.setAttribute("for", "category");
-
-  defaultOption.textContent = "default";
-  defaultOption.setAttribute("value", "default");
-  category.appendChild(defaultOption);
-
-  populateProjectOption(category);
-
   const parentNode = createBtn.parentNode;
-  parentNode.insertBefore(categoryLabel, createBtn);
-  parentNode.insertBefore(category, createBtn);
+  addCategory(parentNode, createBtn);
 }
 export function generateProjectDialog() {
   type.value = "project";
@@ -80,40 +61,65 @@ export function generateEditDialog(index) {
   console.log(taskArr);
 }
 
+function addCategory(parentNode, btn) {
+  const categoryLabel = document.createElement("label");
+  const category = document.createElement("select");
+
+  category.setAttribute("id", "category");
+  category.setAttribute("type", "option");
+
+  const defaultOption = document.createElement("option");
+
+  categoryLabel.textContent = "Choose your project";
+  categoryLabel.setAttribute("for", "category");
+
+  defaultOption.textContent = "default";
+  defaultOption.setAttribute("value", "default");
+  category.appendChild(defaultOption);
+
+  populateProjectOption(category);
+  parentNode.insertBefore(categoryLabel, btn);
+  parentNode.insertBefore(category, btn);
+}
+
 function editCard(index) {
-  console.log("from edit card");
   const card = document.querySelector(`div[data-index='${index}`);
   card.innerHTML = "";
   const title = document.createElement("input");
   title.classList.add(`title${index}`);
+  title.value = taskArr[index].title;
 
   const note = document.createElement("input");
   note.classList.add(`note${index}`);
+  note.value = taskArr[index].note;
 
   const dueDate = document.createElement("input");
   dueDate.classList.add(`dueDate${index}`);
+  dueDate.value = taskArr[index].dueDate;
+  dueDate.setAttribute("type", "date");
 
   const priority = document.createElement("input");
   priority.classList.add(`priority${index}`);
-
-  const category = document.createElement("input");
-  category.classList.add(`category${index}`);
+  priority.value = taskArr[index].priority;
+  priority.setAttribute("type", "range");
+  priority.setAttribute("min", "1");
+  priority.setAttribute("max", "3");
 
   const edit = document.createElement("button");
   edit.classList.add(`edit${index}`);
   edit.textContent = "edit";
 
-  title.value = taskArr[index].title;
   card.appendChild(title);
   card.appendChild(note);
   card.appendChild(dueDate);
   card.appendChild(priority);
-  card.appendChild(category);
   card.appendChild(edit);
+  addCategory(card, edit);
+  const category = edit.previousSibling;
+  category.classList.add(`category${index}`);
 }
 
 function editTaskInfo(index) {
-  console.log("from edit task info");
   const titleVal = document.querySelector(`.title${index}`).value;
   const noteVal = document.querySelector(`.note${index}`).value;
   const dueDateVal = document.querySelector(`.dueDate${index}`).value;
