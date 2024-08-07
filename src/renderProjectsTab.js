@@ -1,6 +1,7 @@
 import { taskArr, projectArr } from ".";
 import { currentTab } from ".";
 import { createCard } from "./card";
+import { getProjectTask } from "./sort&filter";
 const content = document.querySelector(".content");
 export function renderProject(arr) {
   currentTab = "project";
@@ -16,6 +17,8 @@ export function renderProject(arr) {
     description.textContent = project.description;
     const card = document.querySelector(`div[data-index='${index}']`);
     const note = card.querySelector(`.note`);
+    const title = card.querySelector(`.title`);
+    card.addEventListener("click", () => getProjectTask(title));
     card.insertBefore(description, note);
   });
 }

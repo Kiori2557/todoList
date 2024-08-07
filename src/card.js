@@ -1,7 +1,9 @@
 import { generateEditDialog } from "./renderDialog";
+import { format } from "date-fns";
 import { renderTaskCard } from "./allTab";
 import { isValid } from "date-fns";
 import { store } from "./create";
+import { UTCDate } from "@date-fns/utc";
 
 export function createCard(item, arr, parent) {
   const card = document.createElement("div");
@@ -16,9 +18,11 @@ export function createCard(item, arr, parent) {
   title.textContent = item.title;
   note.textContent = item.note;
   note.classList.add("note");
-  if (isValid(item.dueDate)) {
-    dueDate.textContent = item.dueDate;
-  }
+  let dueDateContent = new Date(item.dueDate);
+  dueDateContent = format(dueDateContent, "do MMM yyyy");
+
+  dueDate.textContent = dueDateContent;
+
   changeStatus.checked = item.status;
   changeStatus.addEventListener("click", () => toggleStatus(changeStatus, arr));
   deleteBtn.addEventListener("click", () => {
@@ -34,10 +38,10 @@ export function createCard(item, arr, parent) {
   status.classList.add("status");
   deleteBtn.textContent = "delete";
   editBtn.textContent = "edit";
-  console.log(`from card ${arr.indexOf(item)}`);
   card.setAttribute("data-index", arr.indexOf(item));
   changeStatus.setAttribute("type", "checkbox");
   changeStatus.classList.add("changeStatus");
+  title.classList.add("title");
   card.classList.add("taskCard");
   card.appendChild(title);
   card.appendChild(note);

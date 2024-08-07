@@ -6,6 +6,7 @@ import { populateProjectList } from "./populateDom";
 import { renderTaskCard } from "./allTab";
 import { renderProject } from "./renderProjectsTab";
 import { currentTab } from ".";
+import { UTCDate } from "@date-fns/utc";
 
 class Task {
   constructor(title, note, dueDate, priority, category, status) {
@@ -35,10 +36,11 @@ export function create() {
   const priorityVal = document.querySelector("#priority").value;
   const typeVal = document.querySelector("#type").value;
   const statusVal = document.querySelector("#status").checked;
+  // console.log(dueDateVal);
   if (dueDateVal == null || dueDateVal == "") {
-    dueDateVal = new Date();
+    dueDateVal = new UTCDate();
   } else {
-    dueDateVal = new Date(dueDateVal);
+    dueDateVal = new UTCDate(dueDateVal);
   }
   if (typeVal === "task") {
     const category = document.querySelector("#category");
@@ -101,7 +103,6 @@ function createProjectObj(title, note, dueDate, priority, description, status) {
 
 export function store(arr) {
   if (arr === taskArr) {
-    console.log("store in the localStorage");
     localStorage.setItem(`taskArray`, JSON.stringify(arr));
   } else if (arr === projectArr) {
     localStorage.setItem(`projectArray`, JSON.stringify(arr));

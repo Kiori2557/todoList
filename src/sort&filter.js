@@ -32,3 +32,8 @@ function sort(arr) {
     }
   };
 }
+
+export function getProjectTask(projectTitle) {
+  let projectTaskArr = taskArr.filter((task) => task.category == projectTitle);
+  renderTaskCard(projectTaskArr);
+}

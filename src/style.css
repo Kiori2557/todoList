@@ -41,9 +41,17 @@ ul > li > a {
   justify-content: space-between;
   font-size: 1.6rem;
 }
-ul > li > a:hover {
+/* ul > li > a:hover {
+  background-color: green;
+} */
+
+.projectHead:hover {
   background-color: green;
 }
+.projectList:hover {
+  background-color: green;
+}
+
 .navBar > li:last-child {
   color: red;
   margin-top: auto;

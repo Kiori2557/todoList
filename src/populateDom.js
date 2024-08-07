@@ -1,6 +1,7 @@
 import { store } from "./create";
 import { projectArr, taskArr } from ".";
 import { renderTaskCard } from "./allTab";
+import { getProjectTask } from "./sort&filter";
 export const projectListContainer = document.querySelector(".projectList");
 export function populateProjectList() {
   projectListContainer.innerHTML = "";
@@ -16,6 +17,7 @@ export function populateProjectList() {
     deleteProjectBtn.addEventListener("click", () => {
       deleteProject(deleteProjectBtn);
     });
+    projectLi.addEventListener("click", () => getProjectTask(project.title));
   });
 }
 
