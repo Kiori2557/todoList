@@ -76,3 +76,10 @@ main {
 .projectList > * {
   margin-left: 2rem;
 }
+/* card */
+.deleteBtn,
+.editBtn,
+.moreBtn {
+  width: 20px;
+  height: 20px;
+}
