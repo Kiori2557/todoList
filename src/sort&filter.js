@@ -22,12 +22,11 @@ function sort(arr) {
   return function sortTask(func) {
     if (sortByBtn.value == "dueDate") {
       let ascArr = sortArr.toSorted(
-        (a, b) => a.dueDate.getTime() - b.dueDate.getTime()
+        (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
       );
       func(ascArr);
     } else if (sortByBtn.value == "priority") {
       let ascArr = sortArr.toSorted((a, b) => b.priority - a.priority);
-      console.log(ascArr);
       func(ascArr);
     }
   };
