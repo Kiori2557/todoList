@@ -1,6 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Julius+Sans+One&display=swap");
+
 :root {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.25;
+  --primary-bg-color: #7da5f4;
+  --secondary-bg-color: #5589d8;
+  --primary-color: #ffffff;
+  --card-bg-color-1: #77d697;
+  --card-bg-color-2: #d67793;
+  --card-bg-color-3: #7f77d6;
+  --font-size-900: 3.56rem;
+  --font-size-800: 2rem;
+  --font-size-700: 1.67rem;
+  --font-size-600: 1.333rem;
+  --font-size-500: 1.1rem;
+  --aside-width: 19.4rem;
 }
 
 * {
@@ -9,9 +23,62 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Josefin Slab", serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+}
+
+/* aside */
+aside {
+  border: 1px dotted rebeccapurple;
+  min-height: 100dvh;
+  min-width: var(--aside-width);
+}
+
+.heroTitle {
+  font-family: "Julius Sans One", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: var(--font-size-900);
+}
+
+.heroText {
+  font-size: var(--font-size-600);
+}
+
+/* nav */
+
+.navBar {
+  margin-top: 6.94rem;
+  text-align: center;
+}
+
+.allTask {
+  position: relative;
+  margin-bottom: 2.8rem;
+}
+
+.projectContainer {
+  position: relative;
+}
+.projectContainer > a {
+  width: 100%;
+}
+.projectList {
+  text-align: center;
+}
+/* container */
+.container {
+  border: 1px dotted magenta;
+  width: calc(100dvw - var(--aside-width));
+}
+
 .icon {
-  width: 2rem;
-  height: 2rem;
+  position: absolute;
+  width: 1.94rem;
+  height: 1.94rem;
 }
 
 /* card */

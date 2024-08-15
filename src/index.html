@@ -6,14 +6,14 @@
     <title>Progress</title>
   </head>
   <body>
-    <nav>
+    <aside>
       <header>
-        <h1>PROGRESS</h1>
-        <p>a place to plan your days</p>
+        <h1 class="heroTitle">PROGRESS</h1>
+        <p class="heroText">a place to plan your days</p>
       </header>
       <ul class="navBar">
-        <li>
-          <a class="allTask">
+        <li class="allTask">
+          <a>
             <span>Task</span>
             <svg
               class="icon newTask"
@@ -26,28 +26,26 @@
             </svg>
           </a>
         </li>
-        <li>
+        <li class="projectContainer">
           <a class="newProject">
-            <div class="projectContainer">
-              <div class="projectHead">
-                <span class="label"> Projects</span>
-                <svg
-                  class="icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 448 512"
-                >
-                  <path
-                    d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"
-                  />
-                </svg>
-              </div>
-              <ul class="projectList"></ul>
+            <div class="projectHead">
+              <span class="label"> Projects</span>
+              <svg
+                class="icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"
+                />
+              </svg>
             </div>
+            <ul class="projectList"></ul>
           </a>
         </li>
         <li></li>
       </ul>
-    </nav>
+    </aside>
     <div class="container">
       <div class="head">
         <label for="sortBy">sort by</label>

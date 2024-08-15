@@ -8,7 +8,7 @@ export function populateProjectList() {
   projectArr.forEach((project) => {
     const projectLi = document.createElement("li");
     const deleteProjectBtn = document.createElement("span");
-    deleteProjectBtn.innerHTML = `<svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    deleteProjectBtn.innerHTML = `<svg class="icon" width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M25 15C25 16.1063 24.3125 17 23.4615 17H6.53846C5.6875 17 5 16.1063 5 15C5 13.8937 5.6875 13 6.53846 13H23.4615C24.3125 13 25 13.8937 25 15Z" fill="#3B5891"/>
 </svg>
 `;
