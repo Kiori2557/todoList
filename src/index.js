@@ -8,7 +8,7 @@ import { renderProject } from "./renderProjectsTab";
 
 export const sortByBtn = document.querySelector("#sortBy");
 const newTask = document.querySelector(".newTask");
-const newProject = document.querySelector(".projectHead>.icon");
+const newProject = document.querySelector(".newProject");
 const projectTab = document.querySelector(".projectHead");
 const createBtn = document.querySelector(".create");
 const allTask = document.querySelector(".allTask");

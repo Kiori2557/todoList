@@ -4,8 +4,9 @@
   font-size: 18px;
   line-height: 1.25;
   --primary-bg-color: #7da5f4;
-  --secondary-bg-color: #5589d8;
+  --secondary-bg-color: hsl(216, 63%, 59%);
   --primary-color: #ffffff;
+  --secondary-color: #3b5891;
   --card-bg-color-1: #77d697;
   --card-bg-color-2: #d67793;
   --card-bg-color-3: #7f77d6;
@@ -35,6 +36,7 @@ aside {
   border: 1px dotted rebeccapurple;
   min-height: 100dvh;
   min-width: var(--aside-width);
+  background-color: var(--secondary-bg-color);
 }
 
 .heroTitle {
@@ -58,8 +60,36 @@ aside {
 .allTask {
   position: relative;
   margin-bottom: 2.8rem;
+  padding: 1rem 0;
 }
 
+.projectHead {
+  padding: 1rem 0;
+}
+.newProject,
+.newTask {
+  fill: var(--secondary-color);
+  right: 100px;
+  position: absolute;
+  width: 1.94rem;
+  height: 1.94rem;
+  top: 22.5px;
+  right: 20px;
+  visibility: hidden;
+}
+.projectHead:hover,
+.allTask:hover,
+.projectList:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(85, 137, 216, 1) 0%,
+    rgba(125, 165, 244, 1) 100%
+  );
+}
+.projectHead:hover .newProject,
+.allTask:hover .newTask {
+  visibility: visible;
+}
 .projectContainer {
   position: relative;
 }
@@ -67,18 +97,45 @@ aside {
   width: 100%;
 }
 .projectList {
+  font-size: var(--font-size-700);
   text-align: center;
+  color: var(--primary-color);
 }
+.projectList > li {
+  padding: calc(var(--font-size-600) / 2) 0;
+}
+li[class^="project-"] {
+  position: relative;
+}
+li[class^="project-"] .icon {
+  visibility: hidden;
+  position: absolute;
+  top: 15px;
+  right: 39px;
+}
+li[class^="project-"]:hover .icon {
+  visibility: visible;
+}
+.label {
+  font-size: var(--font-size-800);
+  color: var(--primary-color);
+}
+
 /* container */
 .container {
   border: 1px dotted magenta;
   width: calc(100dvw - var(--aside-width));
+  background-color: var(--primary-bg-color);
 }
 
-.icon {
-  position: absolute;
-  width: 1.94rem;
-  height: 1.94rem;
+/* content */
+.content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.taskCard {
+  border: 1px solid maroon;
 }
 
 /* card */
