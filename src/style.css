@@ -33,10 +33,11 @@ body {
 
 /* aside */
 aside {
-  border: 1px dotted rebeccapurple;
   min-height: 100dvh;
   min-width: var(--aside-width);
   background-color: var(--secondary-bg-color);
+  box-shadow: 10px 0px 4px -6px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .heroTitle {
@@ -79,7 +80,8 @@ aside {
 }
 .projectHead:hover,
 .allTask:hover,
-.projectList:hover {
+.projectHead:hover,
+li[class^="project-"]:hover {
   background: linear-gradient(
     135deg,
     rgba(85, 137, 216, 1) 0%,
@@ -104,8 +106,17 @@ aside {
 .projectList > li {
   padding: calc(var(--font-size-600) / 2) 0;
 }
+
 li[class^="project-"] {
   position: relative;
+}
+li[class^="project-"]::before {
+  display: inline-block;
+  content: url(circle-regular.svg);
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 90px;
 }
 li[class^="project-"] .icon {
   visibility: hidden;
@@ -123,25 +134,77 @@ li[class^="project-"]:hover .icon {
 
 /* container */
 .container {
-  border: 1px dotted magenta;
   width: calc(100dvw - var(--aside-width));
   background-color: var(--primary-bg-color);
 }
 
 /* content */
 .content {
+  margin: 0 30px;
+  margin-top: 90px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .taskCard {
-  border: 1px solid maroon;
+  position: relative;
+  border-radius: 10px;
+  min-height: 145px;
+  color: #ffffff;
+  box-shadow: 0px 10px 3px -6px rgba(0, 0, 0, 0.2);
 }
-
+.taskCard > .date {
+  color: #ffffffc8;
+  font-size: 1rem;
+  position: absolute;
+  top: 16px;
+  left: 20px;
+}
+.taskCard > .title {
+  font-size: var(--font-size-700);
+  position: absolute;
+  top: 60px;
+  left: 40px;
+}
+.taskCard > .changeStatus {
+  position: absolute;
+  top: 65px;
+  left: 10px;
+}
+.taskCard > .deleteBtn {
+  top: 10px;
+  right: 10px;
+}
+.taskCard > .moreBtn {
+  bottom: 10px;
+  right: 10px;
+}
+.taskCard > .editBtn {
+  bottom: 10px;
+  right: 40px;
+}
+.taskCard > [class$="Btn"] > svg:hover > path {
+  fill: var(--primary-bg-color);
+}
+.priority-1 {
+  background-color: var(--card-bg-color-1);
+}
+.priority-2 {
+  background-color: var(--card-bg-color-2);
+}
+.priority-3 {
+  background-color: var(--card-bg-color-3);
+}
+.priority-2 {
+  background-color: #d67793;
+}
 /* card */
 .deleteBtn,
 .editBtn,
-.moreBtn {
+.moreBtn,
+.changeStatus {
   width: 20px;
   height: 20px;
+  position: absolute;
 }

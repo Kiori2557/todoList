@@ -8,22 +8,18 @@ import { UTCDate } from "@date-fns/utc";
 export function createCard(item, arr, parent) {
   const card = document.createElement("div");
   const title = document.createElement("div");
-  // const note = document.createElement("div");
   const dueDate = document.createElement("div");
-  // const priority = document.createElement("div");
-  // const status = document.createElement("div");
   const changeStatus = document.createElement("input");
   const deleteBtn = document.createElement("div");
   const editBtn = document.createElement("div");
   const moreBtn = document.createElement("div");
   title.textContent = item.title;
-  // note.textContent = item.note;
-  // note.classList.add("note");
+  card.classList.add(`priority-${item.priority}`);
   let dueDateContent = new Date(item.dueDate);
   dueDateContent = format(dueDateContent, "do MMM yyyy");
 
   dueDate.textContent = dueDateContent;
-
+  dueDate.classList.add("date");
   changeStatus.checked = item.status;
   changeStatus.addEventListener("click", () => toggleStatus(changeStatus, arr));
   deleteBtn.addEventListener("click", () => {
@@ -32,11 +28,6 @@ export function createCard(item, arr, parent) {
   editBtn.addEventListener("click", () =>
     generateEditDialog(arr.indexOf(item))
   );
-  // priority.textContent = item.priority;
-  // item.status
-  //   ? (status.textContent = "done")
-  //   : (status.textContent = "on process");
-  // status.classList.add("status");
   deleteBtn.classList.add("deleteBtn");
   editBtn.classList.add("editBtn");
   moreBtn.classList.add("moreBtn");
@@ -48,11 +39,8 @@ export function createCard(item, arr, parent) {
   changeStatus.classList.add("changeStatus");
   title.classList.add("title");
   card.classList.add("taskCard");
-  card.appendChild(title);
-  // card.appendChild(note);
   card.appendChild(dueDate);
-  // card.appendChild(priority);
-  // card.appendChild(status);
+  card.appendChild(title);
   card.appendChild(changeStatus);
   card.appendChild(deleteBtn);
   card.appendChild(editBtn);
