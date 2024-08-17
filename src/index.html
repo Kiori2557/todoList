@@ -50,7 +50,7 @@
       <div class="head">
         <label for="sortBy">sort by</label>
         <select name="" id="sortBy">
-          <option value="" hidden default>choose ur option</option>
+          <option value="" hidden default>default</option>
           <option value="dueDate" class="sortDueDate">due date</option>
           <option value="priority">priority</option>
         </select>
@@ -58,11 +58,11 @@
       <main class="content"></main>
     </div>
 
-    <dialog>
+    <dialog class="form">
       <form action="" class="newForm">
         <input type="text" hidden name="" id="type" />
         <label for="title">title:</label>
-        <input id="title" type="text" />
+        <input id="title" type="text" required />
         <label for="note">note:</label>
         <input id="note" type="text" />
         <label for="dueDate">dueDate:</label>
@@ -74,5 +74,6 @@
         <button type="submit" formmethod="dialog" class="create">new</button>
       </form>
     </dialog>
+    <dialog class="showDetail"></dialog>
   </body>
 </html>

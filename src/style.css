@@ -29,6 +29,7 @@ body {
   font-weight: 400;
   font-style: normal;
   display: flex;
+  position: relative;
 }
 
 /* aside */
@@ -137,7 +138,20 @@ li[class^="project-"]:hover .icon {
   width: calc(100dvw - var(--aside-width));
   background-color: var(--primary-bg-color);
 }
-
+.head {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  width: fit-content;
+}
+.head > label {
+  font-size: var(--font-size-600);
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+.head > option {
+  font-size: var(--font-size-600);
+}
 /* content */
 .content {
   margin: 0 30px;
@@ -167,9 +181,9 @@ li[class^="project-"]:hover .icon {
   top: 60px;
   left: 40px;
 }
-.taskCard > .changeStatus {
+.taskCard > .statusContainer {
   position: absolute;
-  top: 65px;
+  top: 70px;
   left: 10px;
 }
 .taskCard > .deleteBtn {
@@ -199,12 +213,110 @@ li[class^="project-"]:hover .icon {
 .priority-2 {
   background-color: #d67793;
 }
+/* Styling Status CheckBox */
+.statusContainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.statusContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #7da5f4b0;
+  border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.statusContainer:hover input ~ .checkmark {
+  background-color: var(--primary-bg-color);
+}
+
+/* When the checkbox is checked, add a blue background */
+.statusContainer input:checked ~ .checkmark {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.statusContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.statusContainer .checkmark:after {
+  left: 7px;
+  top: 1px;
+  width: 4px;
+  height: 13px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
 /* card */
 .deleteBtn,
 .editBtn,
 .moreBtn,
-.changeStatus {
+.changeStatus,
+.detailEdit,
+.detailDelete {
   width: 20px;
   height: 20px;
   position: absolute;
 }
+
+/* Show More Dialog */
+.showDetail {
+  height: auto;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  z-index: 2;
+}
+.detailContainer {
+  width: var(--aside-width);
+  position: relative;
+  padding: 2rem;
+  font-size: var(--font-size-600);
+  color: #ffffff;
+  font-weight: 500;
+}
+.detailContainer > .detailEdit > svg > path {
+  fill: black;
+}
+.detailLabel {
+  color: #ffffffc8;
+}
+/* .detailEdit,
+.detailDelete {
+  top: 0;
+} */

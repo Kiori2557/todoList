@@ -2,6 +2,7 @@ import { populateProjectOption } from "./populateDom";
 import { taskArr } from ".";
 import { renderTaskCard } from "./allTab";
 import { store } from "./create";
+import { UTCDate } from "@date-fns/utc";
 const createBtn = document.querySelector(".create");
 const dialog = document.querySelector("dialog");
 const newTaskForm = document.querySelector(".newForm");
@@ -134,12 +135,17 @@ function editCard(index) {
 function editTaskInfo(index) {
   const titleVal = document.querySelector(`.title${index}`).value;
   const noteVal = document.querySelector(`.note${index}`).value;
-  const dueDateVal = document.querySelector(`.dueDate${index}`).value;
+  let dueDateVal = document.querySelector(`.dueDate${index}`).value;
   const priorityVal = document.querySelector(`.priority${index}`).value;
   const categoryVal = document.querySelector(`.category${index}`).value;
   let task = taskArr[index];
   task.title = titleVal;
   task.note = noteVal;
+  if (dueDateVal == null || dueDateVal == "") {
+    dueDateVal = new UTCDate();
+  } else {
+    dueDateVal = new UTCDate(dueDateVal);
+  }
   task.dueDate = dueDateVal;
   task.priority = priorityVal;
   task.category = categoryVal;
