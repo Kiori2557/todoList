@@ -11,6 +11,10 @@ const type = document.querySelector("#type");
 export function generateTaskDialog() {
   type.value = "task";
   const parentNode = createBtn.parentNode;
+  const priority = parentNode.querySelector("#priority");
+  priority.addEventListener("change", () =>
+    changePriority(priority, parentNode)
+  );
   addCategory(parentNode, createBtn);
 }
 export function generateProjectDialog() {
@@ -44,18 +48,6 @@ export function showDialog(type) {
   dialog.showModal();
 }
 
-export function showPriorityVal() {
-  const priority = document.querySelector("#priority");
-  const priorityLabel = document.querySelector("label[for='priority']");
-  if (priority.value === "1") {
-    priorityLabel.textContent = "priority: low";
-  } else if (priority.value === "2") {
-    priorityLabel.textContent = "priority: mid";
-  } else if (priority.value === "3") {
-    priorityLabel.textContent = "priority: high";
-  }
-}
-
 export function generateEditDialog(index) {
   editCard(index);
   const editBtn = document.querySelector(`.edit${index}`);
@@ -74,9 +66,34 @@ function formReset() {
   newTaskForm.reset();
 }
 
+function changePriority(priority, parent) {
+  const container = parent.parentNode;
+  const val = priority.value;
+  switch (val) {
+    case "1":
+      container.classList.remove("priority-2");
+      container.classList.remove("priority-3");
+      container.classList.add("priority-1");
+      break;
+    case "2":
+      container.classList.remove("priority-1");
+      container.classList.remove("priority-3");
+      container.classList.add("priority-2");
+      break;
+    case "3":
+      container.classList.remove("priority-2");
+      container.classList.remove("priority-1");
+      container.classList.add("priority-3");
+      break;
+  }
+}
+
 function addCategory(parentNode, btn) {
   const categoryLabel = document.createElement("label");
   const category = document.createElement("select");
+  const container = document.createElement("div");
+
+  container.classList.add("categroyContainer");
 
   category.setAttribute("id", "category");
   category.setAttribute("type", "option");
@@ -91,8 +108,9 @@ function addCategory(parentNode, btn) {
   category.appendChild(defaultOption);
 
   populateProjectOption(category);
-  parentNode.insertBefore(categoryLabel, btn);
-  parentNode.insertBefore(category, btn);
+  container.appendChild(categoryLabel);
+  container.appendChild(category);
+  parentNode.insertBefore(container, btn);
 }
 
 function editCard(index) {

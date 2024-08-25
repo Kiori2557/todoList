@@ -36,7 +36,6 @@ export function create() {
   const priorityVal = document.querySelector("#priority").value;
   const typeVal = document.querySelector("#type").value;
   const statusVal = document.querySelector("#status").checked;
-  // console.log(dueDateVal);
   if (dueDateVal == null || dueDateVal == "") {
     dueDateVal = new UTCDate();
   } else {

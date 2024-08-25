@@ -17,12 +17,6 @@ export function renderTaskCard(arr) {
   } else {
     arr.forEach((task) => {
       createCard(task, arr, content);
-      // let index = arr.indexOf(task);
-      // const category = document.createElement("div");
-      // category.textContent = task.category;
-      // const card = document.querySelector(`div[data-index='${index}']`);
-      // const status = card.querySelector(`.status`);
-      // card.insertBefore(category, status);
     });
   }
 }

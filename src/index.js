@@ -3,7 +3,6 @@ import { showDialog } from "./renderDialog";
 import { create } from "./create";
 import { renderTaskCard } from "./allTab";
 import { sortBy as sortByFunc } from "./sort&filter";
-import { showPriorityVal } from "./renderDialog";
 import { renderProject } from "./renderProjectsTab";
 
 export const sortByBtn = document.querySelector("#sortBy");
@@ -29,7 +28,6 @@ allTask.addEventListener("click", () => renderTaskCard(taskArr));
 sortByBtn.addEventListener("change", () => {
   sortByFunc();
 });
-priority.addEventListener("mousemove", showPriorityVal);
 
 projectTab.addEventListener("click", () => {
   renderProject(projectArr);
